@@ -1,7 +1,7 @@
 Native Go Telegram library
 ==========================
 
-This is a WIP integration of Telegram library (https://github.com/vysheng/tgl) into Go
+This is a WIP integration of C Telegram library (https://github.com/vysheng/tgl) into Go
 
 [![Build Status](https://travis-ci.org/gloob/go-telegram.png)](https://travis-ci.org/gloob/go-telegram)
 
