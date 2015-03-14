@@ -1,0 +1,28 @@
+language: go
+go:
+  - 1.4
+
+sudo: false
+
+branches:
+  only:
+    - master
+
+before_install:
+  - sudo apt-get update -qq > apt-get.out 2>&1  || (cat apt-get.out && exit 1)
+  - git clone --recursive  https://github.com/vysheng/tgl.git
+
+install:
+  - go build -x -v
+
+script:
+  - go test -v
+  - go test -i -race ./...
+  - go test -v -race ./...
+
+notifications:
+  email:
+    recipients:
+      - gloob@litio.org
+    on_success: change
+    on_failure: always
