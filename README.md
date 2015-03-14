@@ -15,7 +15,7 @@ go-telegram is licensed under the Apache License, Version 3.0 (http://www.apache
 Current Development Status
 --------------------------
 
- * In planing phase.
+ * In planning phase.
  * Any useful code yet.
 
 How to Install
