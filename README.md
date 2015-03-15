@@ -32,7 +32,7 @@ How to Install
 
 TbD
 
-    $ go get -u github.com/gloob/go-telegram
+    $ go get -u github.com/gloob/go-telegram/tgl
 
 Current Status
 --------------
@@ -52,7 +52,7 @@ package main
 
 import (
     "fmt"
-    tgl "github.com/gloob/go-telegram"
+    "github.com/gloob/go-telegram/tgl"
 )
 
 func main() {
