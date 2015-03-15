@@ -1,8 +1,7 @@
 language: go
 go:
   - 1.4
-
-sudo: false
+  - tip
 
 branches:
   only:
@@ -10,7 +9,8 @@ branches:
 
 before_install:
   - sudo apt-get update -qq > apt-get.out 2>&1  || (cat apt-get.out && exit 1)
-  - git clone --recursive  https://github.com/vysheng/tgl.git
+  - git submodule update --init --recursive
+  - cd tgl/lib/tgl && ./configure && make
 
 install:
   - go build -x -v
