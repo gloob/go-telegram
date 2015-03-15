@@ -7,7 +7,11 @@ branches:
   only:
     - master
 
+git:
+  submodules: false
+
 before_install:
+  - git submodule update --init --recursive
   - cd tgl/lib/tgl && ./configure && make
   - cd ../../
 
