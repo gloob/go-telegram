@@ -12,7 +12,7 @@ Documentation: http://godoc.org/github.com/gloob/go-telegram/tgl
 LICENSE
 -------
 
-go-telegram is licensed under the Apache License, Version 3.0 (http://www.apache.org/licenses/LICENSE-2.0.html).
+go-telegram is licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0.html).
 
 Current Development Status
 --------------------------
