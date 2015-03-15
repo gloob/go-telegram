@@ -3,7 +3,9 @@ Native Go Telegram library
 
 This is a WIP integration of C Telegram library (https://github.com/vysheng/tgl) into Go
 
-[![Build Status](https://travis-ci.org/gloob/go-telegram.png)](https://travis-ci.org/gloob/go-telegram)
+[![Build Status](https://travis-ci.org/gloob/go-telegram.svg?branch=master)](https://travis-ci.org/gloob/go-telegram)
+
+Version: 0.1-alpha
 
 Documentation: http://godoc.org/github.com/gloob/go-telegram/tgl
 
@@ -15,8 +17,15 @@ go-telegram is licensed under the Apache License, Version 3.0 (http://www.apache
 Current Development Status
 --------------------------
 
+* Alpha version
  * In planning phase.
- * Any useful code yet.
+ * ~~Any useful code yet.~~
+ * Exposing the library into Go without any aliasing.
+
+***
+
+* Beta version
+ * TbD
 
 How to Install
 --------------
