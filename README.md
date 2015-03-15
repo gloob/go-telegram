@@ -38,12 +38,18 @@ Sadly we are facing two problems with the current project approach:
 So you need to do some manual arrangment to succesfully install the package.
 
 ```
-    $ go get -u github.com/gloob/go-telegram/tgl # It will fail tgl.go.h:4:21: fatal error: tgl/tgl.h: No such file or directory
-    $ cd $GOPATH/src/github.com/gloob/go-telegram/tgl
-    $ git submodule update --init --recursive
-    $ cd lib/tgl && ./configure && make
-    $ go get -u github.com/gloob/go-telegram/tgl # It will works now.
+    $ go get -d github.com/gloob/go-telegram/tgl && \
+      cd $GOPATH/src/github.com/gloob/go-telegram/tgl && \
+      git submodule update --init --recursive && \
+      cd lib/tgl && ./configure && make && \
+      go get -u github.com/gloob/go-telegram/tgl
 ```
+
+TODO:
+
+* Refactor Makefile with the previous problems to automatically create using make.
+* Check viability of using subtree instead of submodules (http://blogs.atlassian.com/2013/05/alternatives-to-git-submodule-git-subtree/)
+* Create issue to check viability to add pkg-config support to tlg.
 
 Current Status
 --------------
