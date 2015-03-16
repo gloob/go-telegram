@@ -1,7 +1,7 @@
 package tgl
 
-// #cgo CFLAGS: -I ./tgl/lib
-// #cgo LDFLAGS: -L ./tgl/lib/tgl/libs -l tgl
+// #cgo CFLAGS: -I ./lib
+// #cgo LDFLAGS: -L ./lib/tgl/libs -l tgl
 // #include "tgl.go.h"
 import "C"
 
