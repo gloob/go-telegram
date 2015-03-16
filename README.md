@@ -41,7 +41,7 @@ So you need to do some manual arrangment to succesfully install the package.
     $ go get -d github.com/gloob/go-telegram && \
       cd $GOPATH/src/github.com/gloob/go-telegram && \
       git submodule update --init --recursive && \
-      cd tgl && ./configure && make && \
+      cd ./lib/tgl && ./configure && make && \
       go get -u github.com/gloob/go-telegram
 ```
 
