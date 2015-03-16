@@ -38,11 +38,11 @@ Sadly we are facing two problems with the current project approach:
 So you need to do some manual arrangment to succesfully install the package.
 
 ```
-    $ go get -d github.com/gloob/go-telegram/tgl && \
-      cd $GOPATH/src/github.com/gloob/go-telegram/tgl && \
+    $ go get -d github.com/gloob/go-telegram && \
+      cd $GOPATH/src/github.com/gloob/go-telegram && \
       git submodule update --init --recursive && \
-      cd lib/tgl && ./configure && make && \
-      go get -u github.com/gloob/go-telegram/tgl
+      cd tgl && ./configure && make && \
+      go get -u github.com/gloob/go-telegram
 ```
 
 TODO:
