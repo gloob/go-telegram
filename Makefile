@@ -1,5 +1,8 @@
 all:
-	cd tgl && go get -x
+	go get -x
+
+test:
+	go test -v
 
 fmt:
-	cd tgl && go fmt .
+	go fmt

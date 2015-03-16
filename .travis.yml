@@ -12,11 +12,10 @@ git:
 
 before_install:
   - git submodule update --init --recursive
-  - cd tgl/lib/tgl && ./configure && make
-  - cd ../../
+  - ( cd lib/tgl && ./configure && make )
 
 install:
-  - go build -x -v
+  - go build -x -v ./...
 
 script:
   - go test -v
