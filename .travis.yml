@@ -12,7 +12,7 @@ git:
 
 before_install:
   - git submodule update --init --recursive
-  - ( cd lib/tgl && ./configure && make )
+  - ( cd lib/tgl && ./configure --enable-libevent && make )
 
 install:
   - go build -x -v ./...
