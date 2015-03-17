@@ -64,17 +64,6 @@ Current Status
 Sample Program
 --------------
 
-```go
-package main
-
-import (
-    "fmt"
-    "github.com/gloob/go-telegram/tgl"
-)
-
-func main() {
-    // TODO: Create sample program. :-)
-}
-```
+Check ./examples directory. (WIP)
 
 You can contact me at gloob@litio.org
