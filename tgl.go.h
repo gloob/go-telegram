@@ -5,10 +5,12 @@
 #include <tgl/tgl-timers.h>
 #include <tgl/tgl-net.h>
 
+// TODO: Could we use libevent version detection similar to autotools in Go?
 #include <event2/event.h>
 #include <event2/bufferevent.h>
 
-// From struct tgl_update_callback.
+// Defining typedef of the callbacks, we can encapsulate them if necessary.
+// TODO: Are we going to use them, finally?
 typedef void (new_msg_cb)(struct tgl_state *TLS, struct tgl_message *M);
 typedef void (marked_read_cb)(struct tgl_state *TLS, int num, struct tgl_message *list[]);
 typedef void (logprintf_cb)(const char *format, ...)  __attribute__ ((format (printf, 1, 2)));

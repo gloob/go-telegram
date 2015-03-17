@@ -10,6 +10,6 @@ func TestTglAuth(t *testing.T) {
 
   err := state.Dial()
   if err != nil {
-    t.Errorf("VERBOSE error: %s", err)
+    t.Errorf("Dial error: %s", err)
   }
 }

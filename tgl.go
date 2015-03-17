@@ -3,6 +3,8 @@ package tgl
 /*
 #include "tgl.go.h"
 
+// TODO: Could we move this somewhere?
+// TODO: Finish all the callbacks after test that the system works.
 void new_msg_cb_cgo(struct tgl_state *TLS, struct tgl_message *M) { NewMsgCB(TLS, M); }
 void marked_read_cb_cgo(struct tgl_state *TLS, int num, struct tgl_message *list[]) { MarkedReadCB(TLS, num, list); }
 
