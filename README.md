@@ -1,5 +1,5 @@
-Native Go Telegram library
-==========================
+Go binding of C Telegram library
+================================
 
 This is a WIP integration of C Telegram library (https://github.com/vysheng/tgl) into Go
 
