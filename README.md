@@ -1,11 +1,10 @@
 Go binding of C Telegram library
 ================================
 
-[![Join the chat at https://gitter.im/gloob/go-telegram](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/gloob/go-telegram?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 This is a WIP integration of C Telegram library (https://github.com/vysheng/tgl) into Go
 
 [![Build Status](https://travis-ci.org/gloob/go-telegram.svg?branch=master)](https://travis-ci.org/gloob/go-telegram)
+[![Join the chat at https://gitter.im/gloob/go-telegram](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/gloob/go-telegram?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Version: 0.1-alpha
 
