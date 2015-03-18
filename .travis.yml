@@ -13,6 +13,7 @@ git:
 before_install:
   - git submodule update --init --recursive
   - ( cd lib/tgl && ./configure --enable-libevent && make )
+  - sudo cp lib/tgl/libs/libtgl.so /usr/lib/
 
 install:
   - go build -x -v ./...
