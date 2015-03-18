@@ -54,17 +54,19 @@ func (s *State) Dial () *error{
   config.setRsaKey("./rsa.pub")
   s.EnableCallbacks()
 
-  hash := "36722c72256a24c1225de00eb6a1ca74"
+  hash := "34be6d99874fb9607fe932dbb86fe4a3"
   hptr := C.CString(hash)
   defer C.free(unsafe.Pointer(hptr))
-  app := "gotgl 0.1"
+  app := "Federator"
   aptr := C.CString(app)
   defer C.free(unsafe.Pointer(aptr))
 
-  C.tgl_register_app_id(s.inner, 2899, hptr);
+  C.tgl_register_app_id(s.inner, 10604, hptr);
   C.tgl_set_app_version(s.inner, aptr);
 
-  //C.tgl_init(s.inner)
+  // Bug on C.tlg: If RSA file location doesn't exists it segfault at
+  // tgl/mtproto-client.c:1263 (tglmp_on_start)
+  C.tgl_init(s.inner)
 
   return nil
 }
@@ -78,7 +80,7 @@ func (s *State) EnableCallbacks() {
   C.tgl_set_callback(s.inner, &C.upd_cb)
   C.tgl_set_timer_methods(s.inner, &C.tgl_libevent_timers)
   C.tgl_set_net_methods(s.inner, &C.tgl_conn_methods)
-  //ev *C.struct_event_base = C.event_base_new();
-  //C.tgl_set_ev_base(s.inner, ev);
+  var ev *C.struct_event_base = C.event_base_new();
+  C.tgl_set_ev_base(s.inner, unsafe.Pointer(ev));
 }
 
