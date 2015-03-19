@@ -14,6 +14,7 @@ import "C"
 
 import (
   "fmt"
+  "unsafe"
 )
 
 //export NewMsgCB
@@ -122,6 +123,12 @@ func UserStatusUpdate(TLS *C.struct_tgl_state, U *C.struct_tgl_user) {
 //export CreatePrintNameCB
 func CreatePrintNameCB(TLS *C.struct_tgl_state, id C.tgl_peer_id_t, a1 *C.char, a2 *C.char, a3 *C.char, a4 *C.char) *C.char {
   fmt.Printf("Go.CreatePrintNameCB(): called.\n")
+  fmt.Printf("id: %+v.\n", id)
+  fmt.Printf("a1: %+v.\n", a1)
 
-  return nil
+  app := "Federator"
+  aptr := C.CString(app)
+  defer C.free(unsafe.Pointer(aptr))
+
+  return aptr
 }

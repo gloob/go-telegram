@@ -38,10 +38,12 @@ struct tgl_update_callback upd_cb = {
   .user_registered = user_registered_cb_cgo,
   .user_activated = user_activated_cb_cgo,
   .new_authorization = new_authorization_cb_cgo,
-  .user_update = user_update_cb_cgo,
   .chat_update = chat_update_cb_cgo,
+  .user_update = user_update_cb_cgo,
   .secret_chat_update = secret_chat_update_cb_cgo,
   .msg_receive = msg_receive_cb_cgo,
   .our_id = our_id_cb_cgo,
-  .user_status_update = user_status_update_cb_cgo
+  .notification = notification_cb_cgo,
+  .user_status_update = user_status_update_cb_cgo,
+  .create_print_name = create_print_name_cb_cgo
 };
