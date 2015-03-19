@@ -1,7 +1,11 @@
 /*
- * Callback exposed in Go-like style. We need to declare this callbacks
- * in another file because we are declaring them with export.
- *
+Callbacks exposed in Go-like style.
+
+We need to declare this callbacks in another file because we are declaring
+them with cgo export keyword to be used in the C part. At the moment we are
+following exactly the callbacks functions signature defined in tgl library.
+
+Functions signature can be checked in callbacks.c.
  */
 package tgl
 

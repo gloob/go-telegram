@@ -1,3 +1,6 @@
+/*
+Telegram Go library.
+*/
 package tgl
 
 /*
@@ -203,7 +206,7 @@ func (s *State) EnableCallbacks() {
   C.tgl_set_callback(s.inner, &C.upd_cb)
   C.tgl_set_timer_methods(s.inner, &C.tgl_libevent_timers)
   C.tgl_set_net_methods(s.inner, &C.tgl_conn_methods)
-  var ev *C.struct_event_base = C.event_base_new();
+  var ev = C.event_base_new();
   C.tgl_set_ev_base(s.inner, unsafe.Pointer(ev));
 }
 
