@@ -22,7 +22,7 @@ void msg_receive_cb_cgo(struct tgl_state *TLS, struct tgl_message *M) { MsgRecei
 void our_id_cb_cgo(struct tgl_state *TLS, int id) { OurIdCB(TLS, id); }
 void notification_cb_cgo(struct tgl_state *TLS, char *type, char *message) { NotificationCB(TLS, type, message); }
 void user_status_update_cb_cgo(struct tgl_state *TLS, struct tgl_user *U) { UserStatusUpdate(TLS, U); }
-char *create_print_name_cb_cgo(struct tgl_state *TLS, tgl_peer_id_t id, const char *a1, const char *a2, const char *a3, const char *a4) { CreatePrintNameCB(TLS, id, (char *) a1, (char *) a2, (char *) a3, (char *) a4); }
+char *create_print_name_cb_cgo(struct tgl_state *TLS, tgl_peer_id_t id, const char *a1, const char *a2, const char *a3, const char *a4) { return CreatePrintNameCB(TLS, id, (char *) a1, (char *) a2, (char *) a3, (char *) a4); }
 
 struct tgl_update_callback upd_cb = {
   .new_msg = new_msg_cb_cgo,
