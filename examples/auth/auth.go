@@ -1,7 +1,7 @@
 package main
 
 import (
- 	"fmt"
+	"fmt"
 
 	_ "github.com/gloob/go-telegram"
 )

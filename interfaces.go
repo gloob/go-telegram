@@ -1,21 +1,19 @@
 package tgl
 
-// #cgo CFLAGS: -I ./lib
-// #cgo LDFLAGS: -L ./lib/tgl/libs -l tgl
-// #include "tgl.go.h"
+// #include <tgl/tgl.h>
 import "C"
 
 import (
-  "unsafe"
-  "fmt"
+	"fmt"
+	"unsafe"
 )
 
 type Interface struct {
-  state *State
-  cb *C.struct_tgl_update_callback
-  net *C.struct_tgl_net_methods
-  timer *C.struct_tgl_timer_methods
-  ev *C.void
+	state *State
+	cb    *C.struct_tgl_update_callback
+	net   *C.struct_tgl_net_methods
+	timer *C.struct_tgl_timer_methods
+	ev    *C.void
 }
 
 // TODO: Slowly moving the interfaces logic here.
@@ -29,37 +27,37 @@ void tgl_set_ev_base (struct tgl_state *TLS, void *ev_base);
 */
 
 func NewInterface(state *State) (*Interface, error) {
-  fmt.Printf("Calling NewInterface, let's create some methods.\n")
+	fmt.Printf("Calling NewInterface, let's create some methods.\n")
 
-/*
-  i := &Interface{
-    state: state,
-    cb: cb,
-    net: net,
-    timer: timer,
-    ev: ev,
-  }
+	/*
+	   i := &Interface{
+	     state: state,
+	     cb: cb,
+	     net: net,
+	     timer: timer,
+	     ev: ev,
+	   }
 
-  return i, nil
-*/
+	   return i, nil
+	*/
 
-  return nil, nil
+	return nil, nil
 }
 
 func (i *Interface) Callback() {
-  C.tgl_set_callback(i.state.inner, i.cb)
+	C.tgl_set_callback(i.state.inner, i.cb)
 }
 
 func (i *Interface) Net() {
-  C.tgl_set_net_methods(i.state.inner, i.net)
+	C.tgl_set_net_methods(i.state.inner, i.net)
 }
 
 func (i *Interface) Timer() {
-  C.tgl_set_timer_methods(i.state.inner, i.timer)
+	C.tgl_set_timer_methods(i.state.inner, i.timer)
 }
 
 func (i *Interface) Ev() {
-  C.tgl_set_ev_base(i.state.inner, unsafe.Pointer(i.ev))
+	C.tgl_set_ev_base(i.state.inner, unsafe.Pointer(i.ev))
 }
 
 func (i *Interface) Destroy() {

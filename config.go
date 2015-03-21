@@ -1,14 +1,12 @@
 package tgl
 
-// #cgo CFLAGS: -I ./lib
-// #cgo LDFLAGS: -L ./lib/tgl/libs -l tgl
-// #include "tgl.go.h"
-// #include "stdlib.h"
+// #include <stdlib.h>
+// #include <tgl/tgl.h>
 import "C"
 import "unsafe"
 
 type Config struct {
-  state *State
+	state *State
 }
 
 /*
@@ -29,61 +27,61 @@ x void tgl_incr_verbosity (struct tgl_state *TLS);
 
 // NewState creates a new State struct.
 func NewConfig(state *State) *Config {
-  c := new(Config)
-  c.state = state
+	c := new(Config)
+	c.state = state
 
-  return c
+	return c
 }
 
 func (c *Config) setBinlogMode(mode int) {
-  C.tgl_set_binlog_mode(c.state.inner, C.int(mode))
+	C.tgl_set_binlog_mode(c.state.inner, C.int(mode))
 }
 
 func (c *Config) setBinlogPath(path string) {
-  pptr := C.CString(path)
-  defer C.free(unsafe.Pointer(pptr))
+	pptr := C.CString(path)
+	defer C.free(unsafe.Pointer(pptr))
 
-  C.tgl_set_binlog_path(c.state.inner, pptr)
+	C.tgl_set_binlog_path(c.state.inner, pptr)
 }
 
 func (c *Config) setAuthPath(path string) {
-  pptr := C.CString(path)
-  defer C.free(unsafe.Pointer(pptr))
+	pptr := C.CString(path)
+	defer C.free(unsafe.Pointer(pptr))
 
-  C.tgl_set_auth_file_path(c.state.inner, pptr)
+	C.tgl_set_auth_file_path(c.state.inner, pptr)
 }
 
 func (c *Config) setDownloadPath(path string) {
-  pptr := C.CString(path)
-  defer C.free(unsafe.Pointer(pptr))
+	pptr := C.CString(path)
+	defer C.free(unsafe.Pointer(pptr))
 
-  C.tgl_set_download_directory(c.state.inner, pptr)
+	C.tgl_set_download_directory(c.state.inner, pptr)
 }
 
 func (c *Config) setRsaKey(key string) {
-  kptr := C.CString(key)
-  defer C.free(unsafe.Pointer(kptr))
+	kptr := C.CString(key)
+	defer C.free(unsafe.Pointer(kptr))
 
-  C.tgl_set_rsa_key(c.state.inner, kptr)
+	C.tgl_set_rsa_key(c.state.inner, kptr)
 }
 
 func (c *Config) setAppVersion(version string) {
-  vptr := C.CString(version)
-  defer C.free(unsafe.Pointer(vptr))
+	vptr := C.CString(version)
+	defer C.free(unsafe.Pointer(vptr))
 
-  C.tgl_set_app_version(c.state.inner, vptr)
+	C.tgl_set_app_version(c.state.inner, vptr)
 }
 
 func (c *Config) setTestMode() {
-  C.tgl_set_test_mode(c.state.inner)
+	C.tgl_set_test_mode(c.state.inner)
 }
 
 func (c *Config) setVerboseMode(val int) {
-  C.tgl_set_verbosity(c.state.inner, C.int(val))
+	C.tgl_set_verbosity(c.state.inner, C.int(val))
 }
 
 func (c *Config) setPfs() {
-  C.tgl_enable_pfs(c.state.inner)
+	C.tgl_enable_pfs(c.state.inner)
 }
 
 func (c *Config) Destroy() {

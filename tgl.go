@@ -7,7 +7,6 @@ package tgl
 #include "tgl.go.h"
 
 // TODO: This is client logic, we need to move almost all of this into Go.
-#include <fcntl.h>
 #include <assert.h>
 
 char *get_auth_key_filename(void) { return "auth"; }
@@ -145,68 +144,67 @@ void net_loop(struct tgl_state *TLS) {
 import "C"
 
 import (
-  "unsafe"
-  "fmt"
+	"fmt"
+	"unsafe"
 )
 
 // State wraps a tgl_state struct.
 type State struct {
-  inner *C.struct_tgl_state
+	inner *C.struct_tgl_state
 }
 
 // NewState creates a new State struct.
 func NewState() *State {
-  return &State{C.tgl_state_alloc()}
+	return &State{C.tgl_state_alloc()}
 }
 
-func (s *State) Dial () *error{
-  config := NewConfig(s)
-  defer config.Destroy()
+func (s *State) Dial() *error {
+	config := NewConfig(s)
+	defer config.Destroy()
 
-  config.setRsaKey("./rsa.pub")
-  s.EnableCallbacks()
+	config.setRsaKey("./rsa.pub")
+	s.EnableCallbacks()
 
-  hash := "34be6d99874fb9607fe932dbb86fe4a3"
-  hptr := C.CString(hash)
-  defer C.free(unsafe.Pointer(hptr))
-  app := "Federator"
-  aptr := C.CString(app)
-  defer C.free(unsafe.Pointer(aptr))
+	hash := "34be6d99874fb9607fe932dbb86fe4a3"
+	hptr := C.CString(hash)
+	defer C.free(unsafe.Pointer(hptr))
+	app := "Federator"
+	aptr := C.CString(app)
+	defer C.free(unsafe.Pointer(aptr))
 
-  C.tgl_register_app_id(s.inner, 10604, hptr);
-  C.tgl_set_app_version(s.inner, aptr);
+	C.tgl_register_app_id(s.inner, 10604, hptr)
+	C.tgl_set_app_version(s.inner, aptr)
 
-  // Bug on C.tlg: If RSA file location doesn't exists it segfault at
-  // tgl/mtproto-client.c:1263 (tglmp_on_start)
-  C.tgl_init(s.inner)
+	// Bug on C.tlg: If RSA file location doesn't exists it segfault at
+	// tgl/mtproto-client.c:1263 (tglmp_on_start)
+	C.tgl_init(s.inner)
 
-  // Initial handshake.
-  C.read_auth_file(s.inner)
+	// Initial handshake.
+	C.read_auth_file(s.inner)
 
-  // reset_authorization
-  //var P *C.struct_tgl_peer_t = C.tgl_peer_get (s.inner, TGL_MK_USER(s.inner.our_id))
-  //C.set_default_username(P.user.phone);
-  C.bl_do_reset_authorization(s.inner);
+	// reset_authorization
+	//var P *C.struct_tgl_peer_t = C.tgl_peer_get (s.inner, TGL_MK_USER(s.inner.our_id))
+	//C.set_default_username(P.user.phone);
+	C.bl_do_reset_authorization(s.inner)
 
-  C.tgl_login(s.inner)
+	C.tgl_login(s.inner)
 
-  fmt.Printf("inner: %+v\n", s.inner)
+	fmt.Printf("inner: %+v\n", s.inner)
 
-  //C.net_loop(s.inner)
+	//C.net_loop(s.inner)
 
-  return nil
+	return nil
 }
 
 // Destroy destroys the state struct.
-func (s *State)  Destroy() {
-  C.tgl_free_all(s.inner)
+func (s *State) Destroy() {
+	C.tgl_free_all(s.inner)
 }
 
 func (s *State) EnableCallbacks() {
-  C.tgl_set_callback(s.inner, &C.upd_cb)
-  C.tgl_set_timer_methods(s.inner, &C.tgl_libevent_timers)
-  C.tgl_set_net_methods(s.inner, &C.tgl_conn_methods)
-  var ev = C.event_base_new();
-  C.tgl_set_ev_base(s.inner, unsafe.Pointer(ev));
+	C.tgl_set_callback(s.inner, &C.upd_cb)
+	C.tgl_set_timer_methods(s.inner, &C.tgl_libevent_timers)
+	C.tgl_set_net_methods(s.inner, &C.tgl_conn_methods)
+	var ev = C.event_base_new()
+	C.tgl_set_ev_base(s.inner, unsafe.Pointer(ev))
 }
-
