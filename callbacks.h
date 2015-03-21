@@ -1,3 +1,6 @@
+#ifndef CALLBACKS_H
+#define CALLBACKS_H
+
 // Main callback handler.
 struct tgl_update_callback upd_cb;
 
@@ -23,3 +26,5 @@ typedef void (our_id_cb)(struct tgl_state *TLS, int id);
 typedef void (notification_cb)(struct tgl_state *TLS, char *type, char *message);
 typedef void (user_status_update_cb)(struct tgl_state *TLS, struct tgl_user *U);
 typedef char *(create_print_name_cb)(struct tgl_state *TLS, tgl_peer_id_t id, const char *a1, const char *a2, const char *a3, const char *a4);
+
+#endif // CALLBACKS_H

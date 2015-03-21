@@ -14,10 +14,13 @@
 #include "event-old.h"
 #endif
 
-#include "callbacks.h"
+#include <fcntl.h>
+#include <stdio.h>
 
 #define DC_SERIALIZED_MAGIC 0x868aa81d
 #define STATE_FILE_MAGIC 0x28949a93
 #define SECRET_CHAT_FILE_MAGIC 0x37a1988a
+
+extern struct tgl_update_callback upd_cb;
 
 #endif // GO_TGL_H
