@@ -150,6 +150,10 @@ import (
 
 // State wraps a tgl_state struct.
 type State struct {
+	// We need to have in mind that we cannot modify the internal structure
+	// because in the library C-side the struct is packed.
+	// This is golang-cgo issue #7560 https://github.com/golang/go/issues/7560
+	// That's the reason that some fields are not accessible from the Go side.
 	inner *C.struct_tgl_state
 }
 
