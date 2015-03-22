@@ -115,6 +115,7 @@ void write_state_file (struct tgl_state *TLS) {
   close (state_file_fd);
 }
 
+extern MainLoop(struct tgl_state *TLS);
 void net_loop(struct tgl_state *TLS) {
   int last_get_state = time (0);
   while (1) {
@@ -126,6 +127,8 @@ void net_loop(struct tgl_state *TLS) {
     }
 
     write_state_file (TLS);
+
+    MainLoop(TLS);
 
     if (unknown_user_list_pos) {
       int i;
@@ -166,8 +169,9 @@ func (s *State) Dial() *error {
 	config := NewConfig(s)
 	defer config.Destroy()
 
+	config.setBinlog("binlog", 10)
+
 	config.setRsaKey("./rsa.pub")
-	s.EnableCallbacks()
 
 	hash := "34be6d99874fb9607fe932dbb86fe4a3"
 	hptr := C.CString(hash)
@@ -176,8 +180,12 @@ func (s *State) Dial() *error {
 	aptr := C.CString(app)
 	defer C.free(unsafe.Pointer(aptr))
 
-	C.tgl_register_app_id(s.inner, 10604, hptr)
+	C.tgl_register_app_id(s.inner, C.int(10604), hptr)
 	C.tgl_set_app_version(s.inner, aptr)
+
+	s.EnableCallbacks()
+
+	fmt.Printf("inner: %+v\n", s.inner)
 
 	// Bug on C.tlg: If RSA file location doesn't exists it segfault at
 	// tgl/mtproto-client.c:1263 (tglmp_on_start)

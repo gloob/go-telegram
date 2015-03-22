@@ -3,7 +3,10 @@ package tgl
 // #include <stdlib.h>
 // #include <tgl/tgl.h>
 import "C"
-import "unsafe"
+import (
+	"os"
+	"unsafe"
+)
 
 type Config struct {
 	state *State
@@ -33,15 +36,22 @@ func NewConfig(state *State) *Config {
 	return c
 }
 
-func (c *Config) setBinlogMode(mode int) {
+func (c *Config) setBinlog(path string, mode int) {
+	f, err := os.Create(path)
+	if err != nil {
+		panic("Unable to create binlog file.")
+	}
+	f.Close()
+
+	bptr := C.CString(path)
+	defer C.free(unsafe.Pointer(bptr))
+
+	C.tgl_set_binlog_mode(c.state.inner, 1)
+	C.tgl_set_binlog_path(c.state.inner, bptr)
+
 	C.tgl_set_binlog_mode(c.state.inner, C.int(mode))
-}
 
-func (c *Config) setBinlogPath(path string) {
-	pptr := C.CString(path)
-	defer C.free(unsafe.Pointer(pptr))
-
-	C.tgl_set_binlog_path(c.state.inner, pptr)
+	C.tgl_reopen_binlog_for_writing(c.state.inner)
 }
 
 func (c *Config) setAuthPath(path string) {

@@ -17,6 +17,11 @@ import (
 	"unsafe"
 )
 
+//export MainLoop
+func MainLoop(TLS *C.struct_tgl_state) {
+	fmt.Printf("MainLoop: called.\n")
+}
+
 //export NewMsgCB
 func NewMsgCB(TLS *C.struct_tgl_state, M *C.struct_tgl_message) {
 	fmt.Printf("Go.NewMsgCB(): called.\n")
