@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	_ "github.com/gloob/go-telegram"
+	_ "github.com/gloob/go-telegram/tgl"
 )
 
 func main() {

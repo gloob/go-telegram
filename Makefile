@@ -1,8 +1,8 @@
 all:
-	go get -x
+	go get -x ./...
 
 test:
-	go test -v
+	go test -v ./...
 
 fmt:
-	go fmt
+	go fmt ./...
