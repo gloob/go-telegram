@@ -140,6 +140,13 @@ void net_loop(struct tgl_state *TLS) {
   }
 }
 
+// Wrapping some useful C macros.
+
+// #define TGL_MK_USER(id) tgl_set_peer_id (TGL_PEER_USER,id)
+tgl_peer_id_t macro_TGL_MK_USER(int id) {
+	return tgl_set_peer_id(TGL_PEER_USER, id);
+}
+
 #cgo CFLAGS: -I ./lib
 #cgo LDFLAGS: -L ./lib/tgl/libs -l tgl
 #cgo pkg-config: libevent
@@ -195,7 +202,8 @@ func (s *State) Dial() *error {
 	C.read_auth_file(s.inner)
 
 	// reset_authorization
-	//var P *C.struct_tgl_peer_t = C.tgl_peer_get (s.inner, TGL_MK_USER(s.inner.our_id))
+	P := C.tgl_peer_get(s.inner, C.macro_TGL_MK_USER(s.inner.our_id))
+	fmt.Printf("P: %+v\n", P)
 	//C.set_default_username(P.user.phone);
 	C.bl_do_reset_authorization(s.inner)
 

@@ -23,4 +23,7 @@
 
 extern struct tgl_update_callback upd_cb;
 
+// Wrapping some useful C macros.
+tgl_peer_id_t macro_TGL_MK_USER(int id);
+
 #endif // GO_TGL_H
