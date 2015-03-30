@@ -23,6 +23,8 @@
 
 extern struct tgl_update_callback upd_cb;
 
+void read_auth_file(struct tgl_state *TLS);
+
 // Wrapping some useful C macros.
 tgl_peer_id_t macro_TGL_MK_USER(int id);
 
