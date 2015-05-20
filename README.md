@@ -64,6 +64,6 @@ Current Status
 Sample Program
 --------------
 
-Check ./examples directory. (WIP)
+Check ./tg directory. (WIP)
 
 You can contact me at gloob@litio.org
