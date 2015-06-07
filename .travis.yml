@@ -16,6 +16,7 @@ before_install:
   - sudo cp tgl/lib/tgl/libs/libtgl.so /usr/lib/
 
 install:
+  - go get ./...
   - go build -x -v ./...
 
 script:
